@@ -1,9 +1,11 @@
-# my first attempt at a pseudo-random password generator, as well as recursive programming
 import random
 import string
 
-require_unique = True
 
+# modify the following parameter to generate passwords with unique characters
+require_unique = False
+
+# the main function that generates pseudo-random passwords using the random module
 def generate_pwd():
     upper = random.choices(string.ascii_uppercase, k=5)
     lower = random.choices(string.ascii_lowercase, k=5)
@@ -17,6 +19,7 @@ def generate_pwd():
     return ''.join(combined)
 
 
+# the recursive function to generate passwords with all unique characters
 def unique_generator(pwd = generate_pwd()):
     for character in pwd:
         if not pwd.count(character) == 1:
@@ -26,6 +29,6 @@ def unique_generator(pwd = generate_pwd()):
         return(pwd)
 
 
+# the main code
 final = unique_generator() if require_unique else generate_pwd()
-
 print(final)
